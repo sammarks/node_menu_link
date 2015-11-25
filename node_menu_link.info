@@ -2,7 +2,7 @@ name = Node Menu Link
 description = Adds an entity property for nodes and their respective menu links.
 package = Other
 core = 7.x
-version = 7.x-1.x-dev
+version = 7.x-1.x
 
 dependencies[] = entity
-dependencies[] = entity_menu_links
+dependencies[] = menu_entity
