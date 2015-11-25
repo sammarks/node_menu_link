@@ -1,0 +1,25 @@
+<?php
+
+function node_menu_link_node_load($nodes, $types)
+{
+	foreach ($nodes as $key => $node) {
+		$nodes[$key]->menu_links = node_menu_link_get_menu_links($node);
+	}
+}
+
+function node_menu_link_get_menu_links($node)
+{
+	$links = db_select('menu_links', 'l')
+		->fields('l', array('mlid'))
+		->condition('link_path', 'node/' . $node->nid)
+		->orderBy('weight')
+		->execute()->fetchAll();
+
+	if (count($links) <= 0) return null;
+
+	$single_links = array();
+	foreach ($links as $link) {
+		$single_links[] = $link->mlid;
+	}
+	return $single_links;
+}
